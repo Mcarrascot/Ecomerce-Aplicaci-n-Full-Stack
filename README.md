@@ -1,1 +1,1 @@
-# Ecomerce-Application-Full-Stack
+# Ecommerce-Application-Full-Stack
