@@ -8,23 +8,23 @@ const ProductsData = [
   {
     id: 1,
     img: Img1,
-    title: "Casual Wear",
+    title: "Flash Top",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Top coat without an inhibition layer, featuring light-reflective microglitters.",
   },
   {
     id: 2,
     img: Img2,
-    title: "Printed shirt",
+    title: "Slim Top",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "This top coat is extra fine and extra shiny, perfect for acrylic and poly gel nails.",
   },
   {
     id: 3,
     img: Img3,
-    title: "Women shirt",
+    title: "Top & Base",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "It functions as both a base coat and a top coat.",
   },
 ];
 const TopProducts = () => {
@@ -32,7 +32,7 @@ const TopProducts = () => {
     <div>
       <div className="container mt-20">
         {/* Header section */}
-        <div className="text-left mb-24">
+        <div className="text-center mb-20 max-w-[600px] mx-auto">
           <p data-aos="fade-up" className="text-sm text-primary">
             Top Rated Products for you
           </p>
