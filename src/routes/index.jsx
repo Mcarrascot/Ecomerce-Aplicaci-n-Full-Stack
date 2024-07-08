@@ -1,10 +1,11 @@
 import {
   createBrowserRouter,
 } from "react-router-dom";
-import Home from "../components/pages/home"; 
-import Login from "../components/pages/login"; 
-import CheckOut from "../components/pages/checkout";
-import Products from "../components/pages/products";
+import Home from "../pages/home"; 
+import Login from "../pages/login"; 
+import CheckOut from "../pages/checkout";
+import Products from "../pages/products";
+import Signup from "../pages/Signup";
 
 
 export const Routes = createBrowserRouter([
@@ -23,5 +24,9 @@ export const Routes = createBrowserRouter([
   {
     path: "/products",
     element: <Products />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   }
 ]);
