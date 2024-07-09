@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { signupFields } from "./constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
-import axios from 'axios';
+import UserContext from './../context/User/UserContext'
 
 const fields = signupFields;
 let fieldsState = {};
@@ -10,27 +10,18 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Signup() {
+    const userCtx = useContext(UserContext)
+    const { registerUser } = userCtx;
     const [signupState, setSignupState] = useState(fieldsState);
 
-    const handleChange = (e) => setSignupState({ ...signupState, [e.target.id]: e.target.value });
+    const handleChange = (e) => setSignupState({ 
+        ...signupState,
+        [e.target.id]: e.target.value,
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(signupState)
-        createAccount(signupState)
-    }
-
-    //handle Signup API Integration here
-    const createAccount = async (data) => {
-        try {
-            // await axios.post("https://mct-ecommerce.netlify.app/users", {
-            await axios.post("http://localhost:3000/users", {
-
-                data,
-            });
-        } catch (error) {
-            console.log("Error: ", error);
-        }
+        registerUser(signupState)
     }
 
     return (
@@ -55,9 +46,6 @@ export default function Signup() {
                 }
                 <FormAction handleSubmit={handleSubmit} text="Signup" />
             </div>
-
-
-
         </form>
     )
 }

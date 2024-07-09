@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import { Routes } from './routes';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import UserState from "./context/User/UserState";
 
 function App() {
   React.useEffect(() => {
@@ -21,8 +22,10 @@ function App() {
   }, []);
   return (
     <div className="bg-white  duration-200">
-      <Navbar />
-      <RouterProvider router={Routes} />
+      <UserState>
+        <Navbar />
+        <RouterProvider router={Routes} />
+      </UserState>
       <Footer />
     </div>
   )
