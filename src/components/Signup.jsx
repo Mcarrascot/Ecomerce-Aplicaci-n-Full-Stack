@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signupFields } from "./constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
+import axios from 'axios';
 
 const fields = signupFields;
 let fieldsState = {};
@@ -16,12 +17,20 @@ export default function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(signupState)
-        createAccount()
+        createAccount(signupState)
     }
 
     //handle Signup API Integration here
-    const createAccount = () => {
+    const createAccount = async (data) => {
+        try {
+            // await axios.post("https://mct-ecommerce.netlify.app/users", {
+            await axios.post("http://localhost:3000/users", {
 
+                data,
+            });
+        } catch (error) {
+            console.log("Error: ", error);
+        }
     }
 
     return (

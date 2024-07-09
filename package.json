@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.4",
     "aos": "^2.3.4",
+    "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^4.12.0",

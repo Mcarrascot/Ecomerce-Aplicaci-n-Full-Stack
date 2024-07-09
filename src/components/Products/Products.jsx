@@ -3,127 +3,138 @@ import Img1 from "../../assets/dans_blue.jpg";
 import Img2 from "../../assets/dans_green.jpg";
 import Img3 from "../../assets/dans_grey.jpg";
 import Img4 from "../../assets/dans_pink.jpg";
+import Img5 from "../../assets/filer.jpg";
+import Img6 from "../../assets/pink_box.jpg";
+import Img7 from "../../assets/dans_white.jpg";
+import Img8 from "../../assets/white_box.jpg";
+import Img9 from "../../assets/grey_powder.jpg";
+import Img10 from "../../assets/case.jpg";
+import Img11 from "../../assets/white_purple.jpg";
+import Img12 from "../../assets/black_3.jpg";
+import Img13 from "../../assets/black_blue_box.jpg";
+import Img14 from "../../assets/black_top_coat.jpg";
+
 import { FaStar } from "react-icons/fa6";
 
 const ProductsData = [
   {
     id: 1,
     img: Img1,
-    title: "Women Ethnic",
+    title: "Dans' color gel",
     rating: 5.0,
-    color: "white",
+    color: "color #031",
     aosDelay: "0",
   },
   {
     id: 2,
     img: Img2,
-    title: "Women western",
+    title: "Dans' color gel",
     rating: 4.5,
-    color: "Red",
+    color: "color #041",
     aosDelay: "200",
   },
   {
     id: 3,
     img: Img3,
-    title: "Goggles",
+    title: "Flash Top",
     rating: 4.7,
-    color: "brown",
+    color: "top coat",
     aosDelay: "400",
   },
   {
     id: 4,
     img: Img4,
-    title: "Printed T-Shirt",
+    title: "Slim Top",
     rating: 4.4,
-    color: "Yellow",
+    color: "top coat",
     aosDelay: "600",
   },
   {
     id: 5,
-    img: Img2,
-    title: "Fashin T-Shirt",
+    img: Img5,
+    title: "Go Nails File",
     rating: 4.5,
-    color: "Pink",
+    color: "file 100",
     aosDelay: "800",
   },
   {
     id: 6,
-    img: Img3,
-    title: "Printed T-Shirt",
+    img: Img6,
+    title: "Bluesky Uv Lamp",
     rating: 4.4,
-    color: "Yellow",
+    color: "uv lamp-40wt",
     aosDelay: "600",
   },
   {
     id: 7,
-    img: Img3,
-    title: "Fashin T-Shirt",
+    img: Img7,
+    title: "Top & Base",
     rating: 4.5,
-    color: "Pink",
+    color: "top-base coat",
     aosDelay: "800",
   },
   {
     id: 8,
-    img: Img4,
-    title: "Fashin T-Shirt",
+    img: Img8,
+    title: "Bluesky drill",
     rating: 4.5,
-    color: "Pink",
+    color: "drill 4000-rev",
     aosDelay: "800",
   },
   {
     id: 9,
-    img: Img1,
-    title: "Fashin T-Shirt",
+    img: Img9,
+    title: "Holo Powder",
     rating: 4.5,
-    color: "Pink",
+    color: "bluesky hologram powder",
     aosDelay: "800",
   },
   {
     id: 10,
-    img: Img2,
-    title: "Printed T-Shirt",
+    img: Img10,
+    title: "Bluesky Case",
     rating: 4.4,
-    color: "Yellow",
+    color: "case",
     aosDelay: "600",
   },
   {
     id: 11,
-    img: Img1,
-    title: "Fashin T-Shirt",
+    img: Img11,
+    title: "GoNails oil",
     rating: 4.5,
-    color: "Pink",
+    color: "cuticle oil",
     aosDelay: "800",
   },
   {
     id: 12,
-    img: Img2,
-    title: "Fashin T-Shirt",
+    img: Img12,
+    title: "Bluesky brush",
     rating: 4.5,
-    color: "Pink",
+    color: "four brushes",
     aosDelay: "800",
   },
   {
     id: 13,
-    img: Img3,
-    title: "Fashin T-Shirt",
+    img: Img13,
+    title: "Bluesky uv-lamp",
     rating: 4.5,
-    color: "Pink",
+    color: "black uv-lamp",
     aosDelay: "800",
   },
   {
     id: 14,
-    img: Img4,
-    title: "Fashin T-Shirt",
+    img: Img14,
+    title: "Bluesky top coat",
     rating: 4.5,
-    color: "Pink",
+    color: "no-wipe top coat",
     aosDelay: "800",
   },
   {
     id: 15,
-    img: Img1,
-    title: "Fashin T-Shirt",
+    img: Img4,
+    title: "Slim Top",
     rating: 4.5,
-    color: "Pink",
+    color: "top coat",
     aosDelay: "800",
   },
 ];
@@ -140,10 +151,6 @@ const Products = () => {
           <h1 data-aos="fade-up" className="text-3xl font-bold">
             Products
           </h1>
-          <p data-aos="fade-up" className="text-xs text-gray-400">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit
-            asperiores modi Sit asperiores modi
-          </p>
         </div>
         {/* Body section */}
         <div>
