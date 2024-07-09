@@ -1,7 +1,7 @@
 import axios from 'axios'
-
+const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:1234/"
 const axiosClient = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL
+    baseURL: BASE_URL,
 })
 
 export default axiosClient

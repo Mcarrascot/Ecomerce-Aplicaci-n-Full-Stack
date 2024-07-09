@@ -1,6 +1,3 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
 import Home from "../pages/home"; 
 import Login from "../pages/login"; 
 import CheckOut from "../pages/checkout";
@@ -8,25 +5,30 @@ import Products from "../pages/products";
 import Signup from "../pages/Signup";
 
 
-export const Routes = createBrowserRouter([
+export const ROUTES = [
   {
     path: "/",
-    element: <Home />,
+    component: <Home />,
   },
   {
     path: "/login",
-    element: <Login />,
+    component: <Login />,
   },
   {
     path: "/checkout",
-    element: <CheckOut />,
+    component: <CheckOut />,
   },
   {
     path: "/products",
-    element: <Products />,
+    component: <Products />,
+  },
+  {
+    path: "/profile",
+    component: <Products />,
+    isPrivate: true,
   },
   {
     path: "/signup",
-    element: <Signup />,
-  }
-]);
+    component: <Signup />,
+  },
+];

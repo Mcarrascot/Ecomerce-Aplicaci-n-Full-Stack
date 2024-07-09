@@ -1,14 +1,22 @@
 import React from "react";
 import {
-  RouterProvider,
-} from "react-router-dom";
+  BrowserRouter as Router,
+  Switch
+} from 'react-router-dom';
 import Navbar from "./components/Navbar/index";
 
 import Footer from "./components/Footer/Footer";
-import { Routes } from './routes';
+import { ROUTES } from './routes';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import UserState from "./context/User/UserState";
+import PublicRoute from "./components/Routes/PublicRoute";
+import PrivateRoute from "./components/Routes/PrivateRoute";
+import Home from "./pages/home";
+import ProductsPage from "./pages/products";
+import SignupPage from "./pages/Signup";
+import LoginPage from "./pages/login";
+import Profile from "./components/Profile";
 
 function App() {
   React.useEffect(() => {
@@ -24,7 +32,23 @@ function App() {
     <div className="bg-white  duration-200">
       <UserState>
         <Navbar />
-        <RouterProvider router={Routes} />
+        <Router>
+          {/* <Switch>
+            {
+              ROUTES.map(({ path, component, isPrivate }, index) => {
+                return isPrivate ? <PrivateRoute exact path={path} component={component} key={path} /> : <PublicRoute exact path={path} component={component} key={path}/>
+              })
+            }
+          </Switch> */}
+
+          <Switch>
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <AuthRoute exact path="/login" component={LoginPage} />
+            <AuthRoute exact path="/signup" component={SignupPage} />
+            <PublicRoute exact path="/products" component={ProductsPage} />
+            <PublicRoute exact path="/" component={Home} />
+          </Switch>
+        </Router>
       </UserState>
       <Footer />
     </div>

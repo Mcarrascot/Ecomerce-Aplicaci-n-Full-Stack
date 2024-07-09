@@ -42,7 +42,7 @@ const UserState = (props) => {
         }
 
         try {
-            const respuesta = await axiosClient.get("/usuario/verificar-usuario")
+            const respuesta = await axiosClient.get("/users/verify")
             dispatch({
                 type: "OBTENER_USUARIO",
                 payload: respuesta.data.user
