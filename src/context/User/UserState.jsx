@@ -37,9 +37,10 @@ const UserState = (props) => {
 
         if (token) {
             axiosClient.defaults.headers.common['x-auth-token'] = token
-        } else {
-            delete axiosClient.defaults.headers.common['x-auth-token']
         }
+        //  else {
+        //     delete axiosClient.defaults.headers.common['x-auth-token']
+        // }
 
         try {
             const respuesta = await axiosClient.get("/users/verify")

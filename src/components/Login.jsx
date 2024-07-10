@@ -1,35 +1,35 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { loginFields } from "./constants/formFields";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./Input";
+import UserContext from '../context/User/UserContext';
 
-const fields=loginFields;
+const fields = loginFields;
 let fieldsState = {};
-fields.forEach(field=>fieldsState[field.id]='');
+fields.forEach(field => fieldsState[field.id] = '');
 
-export default function Login(){
-    const [loginState,setLoginState]=useState(fieldsState);
+export default function Login() {
+    const userCtx = useContext(UserContext)
+    const { loginUser } = userCtx;
+    const [loginState, setLoginState] = useState(fieldsState);
 
-    const handleChange=(e)=>{
-        setLoginState({...loginState,[e.target.id]:e.target.value})
+    const handleChange = (e) => {
+        setLoginState({ ...loginState, [e.target.id]: e.target.value })
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
+        console.log('loginState: ', loginState);
+        console.log('e: ', e);
         e.preventDefault();
-        authenticateUser();
+        loginUser(loginState);
     }
 
-    //Handle Login API Integration here
-    const authenticateUser = () =>{
-
-    }
-
-    return(
+    return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        <div className="-space-y-px">
-            {
-                fields.map(field=>
+            <div className="-space-y-px">
+                {
+                    fields.map(field =>
                         <Input
                             key={field.id}
                             handleChange={handleChange}
@@ -41,15 +41,15 @@ export default function Login(){
                             type={field.type}
                             isRequired={field.isRequired}
                             placeholder={field.placeholder}
-                    />
-                
-                )
-            }
-        </div>
+                        />
 
-        <FormExtra/>
-        <FormAction handleSubmit={handleSubmit} text="Login"/>
+                    )
+                }
+            </div>
 
-      </form>
+            <FormExtra />
+            <FormAction handleSubmit={handleSubmit} text="Login" />
+
+        </form>
     )
 }

@@ -12,6 +12,7 @@ import "aos/dist/aos.css";
 import UserState from "./context/User/UserState";
 import PublicRoute from "./components/Routes/PublicRoute";
 import PrivateRoute from "./components/Routes/PrivateRoute";
+import AuthRoute from "./components/Routes/AuthRoute";
 import Home from "./pages/home";
 import ProductsPage from "./pages/products";
 import SignupPage from "./pages/Signup";
@@ -33,13 +34,6 @@ function App() {
       <UserState>
         <Navbar />
         <Router>
-          {/* <Switch>
-            {
-              ROUTES.map(({ path, component, isPrivate }, index) => {
-                return isPrivate ? <PrivateRoute exact path={path} component={component} key={path} /> : <PublicRoute exact path={path} component={component} key={path}/>
-              })
-            }
-          </Switch> */}
 
           <Switch>
             <PrivateRoute exact path="/profile" component={Profile} />

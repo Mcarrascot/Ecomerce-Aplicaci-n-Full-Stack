@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { Route, Redirect } from 'react-router-dom'
 import UserContext from '../../context/User/UserContext'
@@ -10,23 +10,25 @@ export default function AuthRoute({ component: Component, ...props }) {
 
     const [loading, setLoading] = useState(true)
 
-    useEffect(async () => {
+    useEffect(() => {
+        const verifyToken = async () => {
+            await verifyingToken()
+            setLoading(false)
+        }
 
-        await verifyingToken()
-        setLoading(false)
-
-    }, [ authStatus ])
+        verifyToken();
+    }, [authStatus])
 
     return (
-        <Route {...props} render={ props => {            
+        <Route {...props} render={props => {
 
-            if(loading) return null
+            if (loading) return null
 
-            return authStatus ? 
+            return authStatus ?
                 (<Redirect to="/" />)
                 :
                 (<Component {...props} />)
-            }
+        }
         } />
-    )    
+    )
 }
