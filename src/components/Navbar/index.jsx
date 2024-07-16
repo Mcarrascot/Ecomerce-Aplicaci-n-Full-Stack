@@ -13,7 +13,6 @@ function classNames(...classes) {
 export default function Navbar() {
   
   const { logoutUser, user } = useContext(UserContext);
-  console.log('** useLocation: ', location);
   const handleLogout = () => {
     logoutUser();
     window.location.href = '/login';
@@ -53,13 +52,7 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => {
-                  const isActive = window.location.href.includes(item.href);
-                  console.log('** isActive: ', {
-                    isActive,
-                    item: item.name,
-                    itemHref: item.href,
-                    windowHref: window.location.href
-                  })
+                  const isActive = location.pathname == item.href;
                   return (<a
                     key={item.name}
                     href={item.href}
@@ -136,7 +129,7 @@ export default function Navbar() {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => {
-            const isActive = window.location.href === item.href;
+            const isActive = location.pathname === item.href;
             return (<DisclosureButton
               key={item.name}
               as="a"

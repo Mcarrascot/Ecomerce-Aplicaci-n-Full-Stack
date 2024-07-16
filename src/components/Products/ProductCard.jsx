@@ -20,7 +20,7 @@ const ProductCard = ({ data, onProductAdded }) => {
       className="space-y-3"
     >
       <img
-        src={data.img}
+        src={data.imgUrl}
         alt=""
         className="h-[220px] w-[150px] object-cover rounded-md"
       />
