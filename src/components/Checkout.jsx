@@ -37,11 +37,11 @@ const Checkout = () => {
             try {
               const response = await axiosClient.post("/api/orders", {
                 cart: [
-                  ...cartItems.map(({ _id, ...items }) => ({
-                    ...items,
-                    id: _id}
-                  ),
-                )],
+                  ...cartItems.map(item => ({
+                    id: item._id,
+                    price: item.price,
+                  }),
+                  )],
               });
               const orderData = await response.data;
 
