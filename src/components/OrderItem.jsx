@@ -8,12 +8,11 @@ const OrderItem = ({ item }) => {
   const { removeFromCart, increase, decrease } = useContext(CartContext);
 
   return (<div className="flex flex-col rounded-lg bg-white sm:flex-row">
-    <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={item.img} alt={item.title} />
+    <img className="m-2 h-24 w-28 rounded-md border object-cover object-center" src={item.imgUrl} alt={item.title} />
     <div className="flex w-full flex-col px-4 py-4">
       <span className="font-semibold">{item.title}</span>
       <p className="text-lg font-bold">USD ${item.price}</p>
     </div>
-
 
     <div className="top-0 w-full flex-row px-4 py-4">
       <button
