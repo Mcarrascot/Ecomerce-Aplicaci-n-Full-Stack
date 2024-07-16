@@ -24,12 +24,12 @@ const CartReducer = (state, action) => {
   switch (action.type) {
     // If the action type is ADD_TO_CART, we want to add the item to the cartItems array
     case ADD_TO_CART: {
-      const itemExists = state.cartItems.find((item) => item.id === action.payload.id);
+      const itemExists = state.cartItems.find((item) => item._id === action.payload._id);
       let newCartItems;
 
       if (itemExists) {
         newCartItems = state.cartItems.map(item =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -46,7 +46,7 @@ const CartReducer = (state, action) => {
 
     // If the action type is REMOVE_ITEM, we want to remove the item from the cartItems array
     case REMOVE_ITEM: {
-      const newCartItems = state.cartItems.filter(item => item.id !== action.payload.id);
+      const newCartItems = state.cartItems.filter(item => item._id !== action.payload._id);
       return {
         ...state,
         ...calculateItemTotals(newCartItems),
@@ -57,7 +57,7 @@ const CartReducer = (state, action) => {
     // If the action type is INCREASE, we want to increase the quantity of the particular item in the cartItems array
     case INCREASE: {
       const newCartItems = state.cartItems.map(item =>
-        item.id === action.payload.id
+        item._id === action.payload._id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
@@ -71,7 +71,7 @@ const CartReducer = (state, action) => {
     // If the action type is DECREASE, we want to decrease the quantity of the particular item in the cartItems array
     case DECREASE: {
       const newCartItems = state.cartItems.map(item =>
-        item.id === action.payload.id
+        item._id === action.payload._id
           ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
           : item
       );

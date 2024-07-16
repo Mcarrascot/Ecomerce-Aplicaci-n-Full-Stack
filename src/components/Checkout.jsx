@@ -35,13 +35,11 @@ const Checkout = () => {
           }}
           createOrder={async () => {
             try {
-              console.log('** try createOrder **')
               const response = await axiosClient.post("/api/orders", {
                 cart: [
-                  ...cartItems,
+                  ...cartItems.map(({ id, ...items }) => items),
                 ],
               });
-              console.log('** createOrder response **', response)
               const orderData = await response.data;
 
               if (orderData.id) {
@@ -57,13 +55,18 @@ const Checkout = () => {
             } catch (error) {
               console.error(error);
               setMessage(`Could not initiate PayPal Checkout...${error}`);
+              Swal.fire({
+                title: 'Could not initiate PayPal Checkout.',
+                // text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Retry'
+              })
             }
           }}
           onApprove={async (
             data,
             actions
           ) => {
-            console.log('** onApprove  **', data.orderID)
             Swal.fire({
               title: 'Your payment was successful!',
               // text: 'Do you want to continue',

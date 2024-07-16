@@ -9,14 +9,14 @@ const ProductCard = ({ data, onProductAdded }) => {
 
   //Check whether the product is in the cart or not
   const isInCart = (product) => {
-    return !!cartItems.find((item) => item.id === product.id);
+    return !!cartItems.find((item) => item._id === product._id);
   };
 
   return (
     <div
       data-aos="fade-up"
       data-aos-delay={data.aosDelay}
-      key={data.id}
+      key={data._id}
       className="space-y-3"
     >
       <img
