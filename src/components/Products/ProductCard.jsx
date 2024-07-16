@@ -30,7 +30,7 @@ const ProductCard = ({ data, onProductAdded }) => {
           <FaStar className="text-yellow-400" />
           <span>{data.rating}</span>
         </div>
-        <p className="text-md text-gray-600">CLP ${data.price}</p>
+        <p className="text-md text-gray-600">USD ${data.price}</p>
 
       </div>
       {isInCart(data) && (

@@ -8,7 +8,7 @@ const OrderTotal = () => {
   return (<div>
     <div className="mt-6 flex items-center justify-between">
       <p className="text-sm font-medium text-gray-900">Total</p>
-      <p className="text-2xl font-semibold text-gray-900">CLP ${total}</p>
+      <p className="text-2xl font-semibold text-gray-900">USD ${total}</p>
     </div>
   </div>)
 };
