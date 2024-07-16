@@ -19,7 +19,6 @@ const storage = itemsInLocalStorage
   : [];
 
 const CartState = ({ children }) => {
-  console.log('** CartState **: ,' , storage);
   const { total, itemCount } = calculateItemTotals(storage);
   const initialState = {
     cartItems: storage,

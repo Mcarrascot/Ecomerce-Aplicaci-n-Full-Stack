@@ -5,13 +5,14 @@ import Logo from "../../assets/bloom-logo.png";
 import { useContext } from 'react';
 import UserContext from '../../context/User/UserContext';
 import CartContext from '../../context/Cart/CartContext';
+import { Link } from 'react-router-dom';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
-  
+
   const { logoutUser, user } = useContext(UserContext);
   const handleLogout = () => {
     logoutUser();
@@ -53,9 +54,8 @@ export default function Navbar() {
               <div className="flex space-x-4">
                 {navigation.map((item) => {
                   const isActive = location.pathname == item.href;
-                  return (<a
+                  return (<Link to={item.href}><a
                     key={item.name}
-                    href={item.href}
                     aria-current={isActive ? 'page' : undefined}
                     className={classNames(
                       isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -63,7 +63,7 @@ export default function Navbar() {
                     )}
                   >
                     {item.name}
-                  </a>)
+                  </a></Link>)
                 })}
               </div>
             </div>
@@ -72,17 +72,15 @@ export default function Navbar() {
             <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              onClick={() => {
-                window.location.href = '/checkout';
-              }
-              }
             >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View Cart</span>
-              <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
-              {itemCount > 0 && (
-                <div className='cart-circle'>{itemCount}</div>
-              )}
+              <Link to='/checkout'>
+                <span className="absolute -inset-1.5" />
+                <span className="sr-only">View Cart</span>
+                <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
+                {itemCount > 0 && (
+                  <div className='cart-circle'>{itemCount}</div>
+                )}
+              </Link>
 
             </button>
 

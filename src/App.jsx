@@ -36,8 +36,8 @@ function App() {
       <CartState>
         <ProductState>
           <UserState>
-            <Navbar />
             <Router>
+              <Navbar />
               <Switch>
                 <PrivateRoute exact path="/profile" component={ProfilePage} />
                 <AuthRoute exact path="/login" component={LoginPage} />
