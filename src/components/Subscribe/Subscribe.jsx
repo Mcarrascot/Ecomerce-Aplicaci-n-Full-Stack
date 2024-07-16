@@ -1,5 +1,5 @@
 import React from "react";
-import Banner from "../../assets/website/orange-pattern.jpg";
+import Banner from "../../assets/website/purple_banner.png";
 
 const BannerImg = {
   backgroundImage: `url(${Banner})`,
@@ -13,7 +13,6 @@ const BannerImg = {
 const Subscribe = () => {
   return (
     <div
-      data-aos="zoom-in"
       className="mt-20 bg-gray-100 dark:bg-gray-800 text-white "
       style={BannerImg}
     >
@@ -23,7 +22,6 @@ const Subscribe = () => {
             Get Notified About New Products
           </h1>
           <input
-            data-aos="fade-up"
             type="text"
             placeholder="Enter your email"
             className="w-full p-3"

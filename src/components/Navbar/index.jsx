@@ -1,23 +1,34 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FaCartShopping } from "react-icons/fa6";
 import Logo from "../../assets/bloom-logo.png";
 import { useContext } from 'react';
 import UserContext from '../../context/User/UserContext';
-
-const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Products', href: '/products', current: false },
-  { name: 'Login', href: '/login', current: false },
-
-]
+import CartContext from '../../context/Cart/CartContext';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+  
   const { logoutUser, user } = useContext(UserContext);
+  console.log('** useLocation: ', location);
+  const handleLogout = () => {
+    logoutUser();
+    window.location.href = '/login';
+  }
+  let navigation = [
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
+    { name: 'Login', href: '/login' },
+  ]
+  if (user) navigation = navigation.filter(({ name }) => name !== 'Login');
+
+  // Extract itemscount from CartContext
+  const cart = useContext(CartContext);
+  const { itemCount } = cart;
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -42,14 +53,19 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => {
-                  if (user && item.href.includes('/login')) return null;
-
+                  const isActive = window.location.href.includes(item.href);
+                  console.log('** isActive: ', {
+                    isActive,
+                    item: item.name,
+                    itemHref: item.href,
+                    windowHref: window.location.href
+                  })
                   return (<a
                     key={item.name}
                     href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={isActive ? 'page' : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
                     )}
                   >
@@ -63,23 +79,29 @@ export default function Navbar() {
             <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              onClick={() => {
+                window.location.href = '/checkout';
+              }
+              }
             >
               <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
+              <span className="sr-only">View Cart</span>
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
-
+              {itemCount > 0 && (
+                <div className='cart-circle'>{itemCount}</div>
+              )}
 
             </button>
 
             {/* Profile dropdown */}
             {user && (
-              <Menu as="div" className="relative ml-3">
+              <Menu as="div" className="relative ml-6">
                 <div>
                   <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="size-6">
+                      <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
                     </svg>
 
                   </MenuButton>
@@ -95,12 +117,12 @@ export default function Navbar() {
                     </div>
                   </MenuItem>
                   <MenuItem>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                    <a href="/profile" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
                       Settings
                     </a>
                   </MenuItem>
                   <MenuItem>
-                    <button className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100" onClick={logoutUser}>
+                    <button className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100" onClick={handleLogout}>
                       Sign out
                     </button>
                   </MenuItem>
@@ -113,20 +135,22 @@ export default function Navbar() {
 
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
-          {navigation.map((item) => (
-            <DisclosureButton
+          {navigation.map((item) => {
+            const isActive = window.location.href === item.href;
+            return (<DisclosureButton
               key={item.name}
               as="a"
               href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              aria-current={isActive ? 'page' : undefined}
               className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                 'block rounded-md px-3 py-2 text-base font-medium',
               )}
             >
               {item.name}
             </DisclosureButton>
-          ))}
+            )
+          })}
         </div>
       </DisclosurePanel>
     </Disclosure>

@@ -1,33 +1,31 @@
-import React from "react";
-import Image1 from "../../assets/hero/women.png";
-import Image2 from "../../assets/hero/shopping.png";
-import Image3 from "../../assets/hero/sale.png";
+import Image1 from "../../assets/hero/nail_polish.png";
+import Image2 from "../../assets/hero/nail_products.png";
+import Image3 from "../../assets/hero/nail_art.png";
 import Slider from "react-slick";
 
 const ImageList = [
   {
     id: 1,
     img: Image1,
-    title: "Upto 50% off on all Men's Wear",
+    title: "Up to 50% off on all Nail Polish",
     description:
-      "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Explore a vibrant spectrum of colors. Dive into our sale for your chance to adorn your nails with luxury at unbeatable prices.",
   },
   {
     id: 2,
     img: Image2,
-    title: "30% off on all Women's Wear",
+    title: "30% off on Nail Care Products",
     description:
-      "Who's there lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Nourish, strengthen, and beautify your nails. Discover our exclusive deals on nail care essentials designed to give you the perfect manicure.",
   },
   {
     id: 3,
     img: Image3,
-    title: "70% off on all Products Sale",
+    title: "70% off on all Nail Art Supplies",
     description:
-      "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Unleash your creativity with our extensive range of nail art supplies. From dazzling decals to vibrant varnishes, everything you need for stunning nail designs is here.",
   },
 ];
-
 const Hero = () => {
   var settings = {
     dots: false,
@@ -43,16 +41,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200 ">
-      {/* background pattern */}
-      <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
-      {/* hero section */}
+    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center hero-section dark:text-white duration-200 ">
       <div className="container pb-8 sm:pb-0">
         <Slider {...settings}>
           {ImageList.map((data) => (
             <div>
               <div className="grid grid-cols-1 sm:grid-cols-2">
-                {/* text content section */}
                 <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-20 ml-10">
                   <h1
                     data-aos="zoom-out"
@@ -75,15 +69,8 @@ const Hero = () => {
                     data-aos-duration="500"
                     data-aos-delay="300"
                   >
-                    <button
-                      onClick={() => console.log("Clicked order now!")}
-                      className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full"
-                    >
-                      Order Now
-                    </button>
                   </div>
                 </div>
-                {/* image section */}
                 <div className="order-1 sm:order-2">
                   <div
                     data-aos="zoom-in"

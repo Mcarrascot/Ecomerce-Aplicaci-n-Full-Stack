@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { loginFields } from "./constants/formFields";
 import FormAction from "./FormAction";
-import FormExtra from "./FormExtra";
 import Input from "./Input";
 import UserContext from '../context/User/UserContext';
 
@@ -19,8 +18,6 @@ export default function Login() {
     }
 
     const handleSubmit = (e) => {
-        console.log('loginState: ', loginState);
-        console.log('e: ', e);
         e.preventDefault();
         loginUser(loginState);
     }
@@ -42,14 +39,10 @@ export default function Login() {
                             isRequired={field.isRequired}
                             placeholder={field.placeholder}
                         />
-
                     )
                 }
             </div>
-
-            <FormExtra />
             <FormAction handleSubmit={handleSubmit} text="Login" />
-
         </form>
     )
 }

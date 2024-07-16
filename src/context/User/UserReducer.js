@@ -4,7 +4,9 @@ const reducers = (globalState, action) => {
 
         case "LOGIN_EXITOSO":
         case "REGISTRO_EXITOSO":
+        console.log('\n\n setting token: ', action.payload.token)
         localStorage.setItem("token", action.payload.token)
+        console.log('\n\n set token')
 
             return {
                 ...globalState,

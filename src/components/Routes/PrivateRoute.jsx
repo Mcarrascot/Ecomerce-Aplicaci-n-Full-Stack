@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { Route, Redirect } from 'react-router-dom'
 
@@ -7,30 +7,32 @@ import UserContext from '../../context/User/UserContext'
 export default function PrivateRoute({ component: Component, ...props }) {
 
     const userCtx = useContext(UserContext)
-    
+
     const { authStatus, verifyingToken } = userCtx
 
     const [loading, setLoading] = useState(true)
 
-    useEffect(async () => {
+    useEffect(() => {
+        const verifyToken = async () => {
+            await verifyingToken()
+            setLoading(false)
+        }
+        verifyToken();
 
-        await verifyingToken()
-        setLoading(false)
-        
     }, [authStatus])
 
     return (
-        <Route {...props} render={ props => {            
+        <Route {...props} render={props => {
 
-            if(loading) return null
+            if (loading) return null
 
-            return authStatus ? 
+            return authStatus ?
                 (<Component {...props} />)
                 :
                 (<Redirect to="/login" />)
-            }
+        }
         } />
     )
-        
-    
+
+
 }

@@ -6,7 +6,6 @@ import {
 import Navbar from "./components/Navbar/index";
 
 import Footer from "./components/Footer/Footer";
-import { ROUTES } from './routes';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import UserState from "./context/User/UserState";
@@ -17,7 +16,10 @@ import Home from "./pages/home";
 import ProductsPage from "./pages/products";
 import SignupPage from "./pages/Signup";
 import LoginPage from "./pages/login";
-import Profile from "./components/Profile";
+import ProfilePage from "./pages/profile";
+import CartState from "./context/Cart/CartState";
+import CheckOutPage from "./pages/checkout";
+import ProductState from "./context/Product/ProductState";
 
 function App() {
   React.useEffect(() => {
@@ -30,20 +32,24 @@ function App() {
     AOS.refresh();
   }, []);
   return (
-    <div className="bg-white  duration-200">
-      <UserState>
-        <Navbar />
-        <Router>
-
-          <Switch>
-            <PrivateRoute exact path="/profile" component={Profile} />
-            <AuthRoute exact path="/login" component={LoginPage} />
-            <AuthRoute exact path="/signup" component={SignupPage} />
-            <PublicRoute exact path="/products" component={ProductsPage} />
-            <PublicRoute exact path="/" component={Home} />
-          </Switch>
-        </Router>
-      </UserState>
+    <div className="bg-white">
+      <CartState>
+        <ProductState>
+          <UserState>
+            <Navbar />
+            <Router>
+              <Switch>
+                <PrivateRoute exact path="/profile" component={ProfilePage} />
+                <AuthRoute exact path="/login" component={LoginPage} />
+                <AuthRoute exact path="/signup" component={SignupPage} />
+                <PublicRoute exact path="/products" component={ProductsPage} />
+                <PublicRoute exact path="/" component={Home} />
+                <PublicRoute exact path="/checkout" component={CheckOutPage} />
+              </Switch>
+            </Router>
+          </UserState>
+        </ProductState>
+      </CartState>
       <Footer />
     </div>
   )

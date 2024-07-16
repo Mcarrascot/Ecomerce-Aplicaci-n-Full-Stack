@@ -30,18 +30,17 @@ const ProductsData = [
 const TopProducts = () => {
   return (
     <div>
-      <div className="container mt-20">
+      <div className="mt-20">
         {/* Header section */}
-        <div className="text-center mb-20 max-w-[600px] mx-auto">
-          <p data-aos="fade-up" className="text-sm text-primary">
+        <div className="text-center mb-20 mx-auto">
+          <p data-aos="fade-up" className="text-md mb-2 text-primary">
             Top Rated Products for you
           </p>
-          <h1 data-aos="fade-up" className="text-3xl font-bold">
-            Best Products
+          <h1 data-aos="fade-up" className="text-3xl mb-5 font-bold">
+            Most Popular Products
           </h1>
-          <p data-aos="fade-up" className="text-xs text-gray-400">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit
-            asperiores modi Sit asperiores modi
+          <p data-aos="fade-up" className="text-sm text-gray-400">
+              Discover our top-rated nail polishes! Each shade is expertly crafted for lasting beauty and brilliance, ensuring your nails always make a statement.
           </p>
         </div>
         {/* Body section */}
@@ -49,7 +48,7 @@ const TopProducts = () => {
           {ProductsData.map((data) => (
             <div
               data-aos="zoom-in"
-              className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-black/80 dark:hover:bg-primary hover:text-white relative shadow-xl duration-300 group max-w-[300px]"
+              className="rounded-2xl bg-white hover:bg-black/80 dark:hover:bg-primary hover:text-white relative shadow-xl duration-300 group max-w-[300px]"
             >
               {/* image section */}
               <div className="h-[100px]">
@@ -72,12 +71,6 @@ const TopProducts = () => {
                 <p className="text-gray-500 group-hover:text-white duration-300 text-sm line-clamp-2">
                   {data.description}
                 </p>
-                <button
-                  className="bg-primary hover:scale-105 duration-300 text-white py-1 px-4 rounded-full mt-4 group-hover:bg-white group-hover:text-primary"
-                  onClick={() => console.log("Clicked order button")}
-                >
-                  Order Now
-                </button>
               </div>
             </div>
           ))}

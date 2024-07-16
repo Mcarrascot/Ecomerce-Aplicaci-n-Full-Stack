@@ -1,24 +1,13 @@
+import { GET_PRODUCTS } from "./ProductTypes"
+
 const reducer = (globalState, action) => {
 
     switch (action.type) {
 
-        case "GET_GUITARS":
+        case GET_PRODUCTS:
             return {
                 ...globalState,
-                guitars: action.payload,
-                guitar: [{
-                    id_: "",
-                    nombre: "",
-                    color: "",
-                    precio: "",
-                    imagen: ""
-                }]
-            }
-
-        case "GET_GUITAR":
-            return {
-                ...globalState,
-                guitar: [action.payload]
+                products: action.payload
             }
 
         default: 

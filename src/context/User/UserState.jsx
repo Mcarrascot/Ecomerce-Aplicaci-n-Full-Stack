@@ -18,9 +18,10 @@ const UserState = (props) => {
 
     const [globalState, dispatch] = useReducer(UserReducer, initialState)
     const registerUser = async (dataForm) => {
-
+        console.log('** SUBMITTING FORM : ', dataForm);
         try {
             const res = await axiosClient.post("/users/create", dataForm)
+            console.log('** RESPONSE: ', res.data)
             dispatch({
                 type: "REGISTRO_EXITOSO",
                 payload: res.data
@@ -34,8 +35,8 @@ const UserState = (props) => {
 
     const verifyingToken = async () => {
         const token = localStorage.getItem('token')
-
         if (token) {
+            console.log('** SETTING TOKEN: ', token)
             axiosClient.defaults.headers.common['x-auth-token'] = token
         }
         //  else {
@@ -81,6 +82,10 @@ const UserState = (props) => {
     const userSubmitForm = async (data) => {
         const res = await axiosClient.put("/users/update", data)
         console.log(res)
+        dispatch({
+            type: "OBTENER_USUARIO",
+            payload: res.data
+        })
     }
 
     return (
